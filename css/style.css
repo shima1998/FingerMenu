@@ -1,6 +1,5 @@
 #stamp1 {
     position: absolute;
-    /* top: 65%; */
     left:1%;
     height: 90%;
     width: 30%;
@@ -18,12 +17,11 @@
     left:50%;
     height: 90%;
     width: 30%;
-
 }
 
 #stamp2 img{
     max-height: 100%;
-     margin-left: 20%;
+    margin-left: 20%;
 }
 
 #stamp3 {
@@ -41,7 +39,30 @@
 }
 
 #fingermenu{
-    position:absolute;
-    top:70%;
-    /* background-color: rgba(255,0,0,0.5); */
+    /* position: absolute; */
+    background-color: rgba(255,0,0,0.5);
+}
+
+#culmoji{
+    position: relative;
+    left:8%;
+    color:#a9a9a9;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #000;
+}
+
+#phymoji{
+    position: relative;
+    left:10%;
+    color:#a9a9a9;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #000;
+}
+  
+#emomoji{
+    position: relative;
+    left:13%;
+    color:#a9a9a9;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #000;
 }

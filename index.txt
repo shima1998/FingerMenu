@@ -1,0 +1,576 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: content: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/onsenui/js/onsenui.min.js"></script>
+	<script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+	<script src="components/loader.js"></script>
+	<script src="components/index.js"></script>
+	<script src="cmanObjMove_v092.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="cordova-exif.js"></script>
+
+	<link rel="stylesheet" href="components/loader.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<!--トリミングをするためのJcropを読み込み-->
+	<link href='css/jquery.Jcrop.min.css' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="js/jquery.1.X.X.js"></script>
+	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/jquery.Jcrop.js"></script>
+	<script src="js/sample.js"></script>
+</head>
+
+<body>
+	<!-- <ons-template id="page1.html">
+		<ons-page id="top-page">
+
+			<ons-toolbar class="page7_bar">
+				<div class="left">
+					<ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center" style="color:#FFFFFF;">
+					Top
+				</div>
+			</ons-toolbar>
+			<div class="page7_back">
+
+				<div class="page1">
+					<div id="title"> <img id="titleimg" src="img/background.png"> </div>
+					<div id="camerabutton"> <img id="cameraimg" onclick="getPicCam();idchangetrim();" src="img/C_2.png"> </div>
+					<div id="gallerybutton"> <img id="galleryimg" onclick="getPicLib();idchangetrim();" src="img/A_2.png" alt="" /> </div>
+				</div>
+			</div>
+		</ons-page>
+	</ons-template>-->
+
+	<!--トリミング画面-->
+
+	<ons-template id="page8.html">
+		<ons-page id="eight-page">
+			<ons-toolbar class="page8_bar">
+				<div class="left">
+					<ons-back-button>Back</ons-back-button>
+				</div>
+				<div class="center" style="color:#DDDDDD;font-family:arial;font-size:22px;">Triming</div>
+				<div class="right">
+					<ons-button id="push-button">Triming</ons-button>
+				</div>
+			</ons-toolbar>
+			<div class="page8_back">
+				<div class="relative" top:10px width:100px> <img id="picture">
+					<ons-gesture-detector>
+						<canvas id="c1" class="absolute"></canvas>
+					</ons-gesture-detector>
+				</div>
+		</ons-page>
+	</ons-template>
+
+
+<!-- 付け足し中 ↓-->
+
+ <!-- good bad 評価 -->
+  <ons-template id="gdeva.html">
+		<ons-page id="gdeva-page">
+ 　<div class = gdeva>
+   <div class="pic" onclick="getPicLib();idchangetrim();">
+						<!-- <img id="newImg1" src="img/picture.png" alt="" /> -->
+						<canvas id="c2" class="absolute"></canvas>
+					</div>
+ 　</div>
+
+
+		</ons-page>
+ </ons-template>
+  <!--HOMEEE-->
+	<ons-template id="menuuu.html">
+
+        </div>
+
+	 </ons-template>
+
+<!-- ここから101まで消すとメニュー変えられなくなる　& たぶんヘッダー部分 -->
+
+<!-- home.html はevaluateのところ -->
+	<ons-template id="home.html">
+		<ons-page id="first-page">
+      <div class="left">
+				<ons-back-button style="top:10%">Back</ons-back-button>
+			</div>
+
+<!--  ~121 HOME画面が真っ白になっちゃう　& 多分上のDATEとかSAVEとかのとこ-->
+		<!-- </ons-toolbar> -->
+		 <div class="page6" id="page6">
+				<!-- <div class="content">
+					 <div class="prof">
+						<div id="waku1"></div>
+						<div id="waku2"></div>
+						<div id="waku3"></div>
+						<div id="waku4"></div> 
+
+					  <p id="time">Date:</p>
+						<p id="time1"></p>
+
+						<div id="pic2" onclick="go2();">
+							<p id="nameValue"></p>
+							<p id="sexValue"></p>
+							<p id="countryValue"></p>
+							<p id="ageValue"></p>
+						</div>
+					</div>
+				</div> -->
+					<p id="dawnload" style="top:0.5%"> <img class="downloadpic" onclick="screen();" src="img/save.png" alt="" /></p>
+
+<!-- アルバムから選択画面 -->
+					<div class="pic" onclick="getPicLib();idchangetrim();">
+						<!-- <img id="newImg1" src="img/picture.png" alt="" /> -->
+						<canvas id="c2" class="absolute"></canvas>
+					</div>
+
+<!-- 評価の３要素色変わる部分 -->
+					 <!-- <div id="cpetc">
+						<div id="stamp1"> <img id="stamp11" alt="" onclick="changePic1(this.id)" src="img/NC-Cul.png" />
+							<div id="culmoji">Cultural</div>
+						</div>
+						<div id="stamp2"> <img id="stamp22" alt="" onclick="changePic2(this.id)" src="img/NC-Emo.png" />
+							<div id="emomoji">Emotional</div>
+						</div>
+						<div id="stamp3"> <img id="stamp33" alt="" onclick="changePic3(this.id)" src="img/NC-Phy.png" />
+							<div id="phymoji">Physical</div>
+						</div>
+				   </div> -->
+<!-- 付箋 -->
+					<div id="texx" ondrag="text1(1)"><textarea id="text"></textarea></div>
+
+<!-- アコーディオンメニュー -->
+      <div id="evamenu"> <img id="finger" onclick="aco()" src="img/finger.png" />
+      </div>
+        <div id= "fingermenu">
+          <div id="cpetc">
+						<div id="stamp1"> <img id="stamp11" alt="" onclick="changePic1(this.id)" src="img/NC-Cul.png" />
+							<div id="culmoji">Cultural</div>
+						</div>
+						<div id="stamp2"> <img id="stamp22" alt="" onclick="changePic2(this.id)" src="img/NC-Emo.png" />
+							<div id="emomoji">Emotional</div>
+						</div>
+						<div id="stamp3"> <img id="stamp33" alt="" onclick="changePic3(this.id)" src="img/NC-Phy.png" />
+							<div id="phymoji">Physical</div>
+						</div>
+				   </div>
+         </div>
+
+     </div> <!-- class page6のやつ-->
+	   </ons-page>
+	</ons-template>
+
+<!-- メニューバー部分 -->
+	 <ons-splitter ng-controller="AppController as app" var="splitter">
+		 <ons-splitter-side id="menu" side="left" width="220px" collapse>
+
+		</ons-splitter-side>
+		<ons-navigator id="navigator"></ons-navigator>
+	</ons-splitter>
+
+<!-- setting画面がメニューからじゃないとひらけない 〜277-->
+<!-- page2.html = setting画面 -->
+	<ons-template id="page2.html">
+		<ons-page id="second-page">
+			<ons-toolbar class="page2_bar">
+				<div class="left" style="width:23%;color:#DDDDDD">
+					<!-- <ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button> -->
+				</div>
+
+				<div class="center" style="font-family:arial;font-size:20px;color:#FFFFFF;">Setting</div>
+			</ons-toolbar>
+			<div class="content">
+				<div class="page2">
+					<div class="main">
+						<form name="first" action="" id="forminfo">
+							<p style="color:#FFFFFF;"> Name<br> <input type="text" name="name" placeholder=" Name"> </p>
+							<p style="color:#FFFFFF;"> Gender<br> <select name="sex" id="002">
+                  <option value="female">Unselected</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                              </select> </p>
+							<p style="color:#FFFFFF;"> Country<br><select name="country" id="003">
+<option value="china">China</option>
+<option value="hongkong">Hongkong</option>
+<option value="japan">Japan</option>
+<option value="korea">Korea</option>
+<option value="malaysia">Malaysia</option>
+<option value="singapore">Singapore</option>
+<option value="taiwan">Taiwan</option>
+
+</select> </p>
+							<p style="color:#FFFFFF;"> Age<br> <select name="age" id="004"><br>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+<option value="32">32</option>
+<option value="33">33</option>
+<option value="34">34</option>
+<option value="35">35</option>
+<option value="36">36</option>
+<option value="37">37</option>
+<option value="38">38</option>
+<option value="39">39</option>
+<option value="40">40</option>
+<option value="41">41</option>
+<option value="42">42</option>
+<option value="43">43</option>
+<option value="44">44</option>
+<option value="45">45</option>
+<option value="46">46</option>
+<option value="47">47</option>
+<option value="48">48</option>
+<option value="49">49</option>
+<option value="50">50</option>
+<option value="51">51</option>
+<option value="52">52</option>
+<option value="53">53</option>
+<option value="54">54</option>
+</select> </p>
+							<!--		<p id="acs_next_text"><input type="checkbox" id="acs_next" name="acs_next" value="" />Do not display next time or later</p>
+            -->
+						</form>
+
+					</div>
+					<ons-button id="push-button2">
+						<div style="text-align: center"> <span>DONE</span>
+						</div>
+					</ons-button>
+				</div>
+			</div>
+		</ons-page>
+	</ons-template>
+
+<!-- help.html = help画面 -->
+	<ons-template id="help.html">
+		<ons-page id="help-page">
+			<ons-toolbar class="page6_bar">
+
+				<!-- <div class="left">
+					<ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button>
+				</div> -->
+
+				<div class="center" style="color:#FFFFFF;">
+					Help
+				</div>
+				<div class="right" style="color:#FFFFFF;">
+				</div>
+			</ons-toolbar>
+			<br>
+
+			<ons-list class="list" modifier="inset">
+				<ons-list-item tappable modifier="longdivider" onclick="gohelp2()" style="color: #FFFFFF">What is this app?</ons-list-item>
+				<ons-list-item tappable modifier="longdivider" onclick="gohelp3()" style="color: #FFFFFF">How to use this app?</ons-list-item>
+				<ons-list-item tappable modifier="longdivider" onclick="gohelp1()" style="color: #FFFFFF">How to evaluate?</ons-list-item>
+			</ons-list>
+
+		</ons-page>
+	</ons-template>
+
+<!-- 付け足し中  menu画面-->
+　<ons-template id="menu.html">
+		<ons-page id="menu-page">
+			<!-- <ons-toolbar class="page6_bar"> -->
+ 　<div class = menuu>
+         <div id="camera"> <img id="camera" alt="" onclick="getPicCam();idchangetrim();" src="img/camera.png" />
+         <!-- <div id="camera"> <img id="camera" alt="" onclick="gogdeva();" src="img/camera.png" /> -->
+<!-- ここ書きかえろ -->
+							<!-- <div id="cameramoji">CAMERA</div> -->
+						</div>
+        </div>
+        <!-- <div id="album"> <img id="album" alt="" onclick="getPicLib();idchangetrim()"; src="img/album.png" /> -->
+        <div id="album"> <img id="album" alt="" onclick="goeva()"; src="img/album.png" />
+						<!-- <div id="albummoji">ALBUM</div> -->
+						</div>
+        </div>
+        <!-- <div id="setting"> <img id="setting" alt="" onclick="go2()"; src="img/setting.png" /> -->
+						<!-- <div id="settingmoji">setting</div> -->
+						</div>
+        </div>
+        <!-- <div id="help"> <img id="help" alt="" onclick="gohelp()"; src="img/question.png" /> -->
+						<!-- <div id="helpmoji">Help</div> -->
+						</div>
+        </div>
+      </div>
+		 </ons-page>
+ </ons-template>
+
+<!-- ~395 how to evaluateがそれを押さないと開かないようにする -->
+<!-- help1.html = How to evaluate画面 -->
+	<ons-template id="help1.html">
+		<ons-page>
+			<ons-toolbar class="help1_bar">
+				<div class="left">
+					<!-- <ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button> -->
+				</div>
+				<div class="center" style="color:#FFFFFF;">How to evaluate?
+				</div>
+			</ons-toolbar>
+
+<!-- ~460 How to Evaluate 画面の文章記述 -->
+			<div class="help1" id="help1">
+
+				<div class="Help1_subti1">
+					<p>About label</p>
+				</div>
+
+				<div class="Help1_images1">
+					<p>
+						<div id="tag_sample"><img id="tag_sample_img" src="img/tag_sample.png"></div>
+					</p>
+				</div>
+
+				<div class="Help1_ex1">
+					<p>You can write a comment for the</p>
+					<p>selected image on the post-it. </p>
+					<p> Also, you can move it to your </p>
+					<p>favorite position.</p>
+				</div>
+
+				<div class="Help1_subti2">
+					<p>About positive of negative</p>
+				</div>
+
+				<div class="Help1_images2">
+					<p>
+						<div id="negative_sample"><img id="negative_sample_img" src="img/NC-Negative.png" onclick="changeColor0(this.id)"></div>
+						<div id="positive_sample"><img id="positive_sample_img" src="img/NC-Positive.png" onclick="changeColor10(this.id)"></div>
+					</p>
+				</div>
+
+				<div class="Help1_ex2">
+					<br>
+					<p>By tapping these icons, you can</p>
+					<p>evaluate whether the selected </p>
+					<p>image is positive or negative.</p>
+				</div>
+
+				<div class="Help1_subti3">
+					<p>About 3 factors</p>
+				</div>
+
+				<div class="Help1_images3">
+					<p>
+						<div id="stamp1_sample"> <img id="stamp11_sample" onclick="changePic1(this.id)" alt="" src="img/NC-Cul.png" /> </div>
+						<div id="stamp3_sample"> <img id="stamp33_sample" onclick="changePic3(this.id)" alt="" src="img/NC-Phy.png" /> </div>
+						<div id="stamp2_sample"> <img id="stamp22_sample" onclick="changePic2(this.id)" alt="" src="img/NC-Emo.png" /> </div>
+					</p>
+				</div>
+
+				<div class="Help1_ex3">
+					<p>By tapping these icons, you can</p>
+					<p>evaluate whether the selected </p>
+					<p>image is positive or negative with </p>
+					<p>divid into cultural, physical and </p>
+					<p> emotional content.</p>
+				</div>
+				<ons-button class="Help_Backbutton" onclick="gohelp3()" style="top:200%">BACK</ons-button>
+				<ons-button class="Help_Nextbutton" onclick="go2()" style="top:200%">EDIT</ons-button>
+			</div>
+
+
+		</ons-page>
+	</ons-template>
+
+
+<!-- What is this appの記述 -->
+	<ons-template id="help2.html">
+		<ons-page>
+
+			<ons-toolbar class="help2_bar">
+				<div class="left">
+					<!-- <ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button> -->
+				</div>
+				<div class="center" style="color:#FFFFFF;">
+					What is this app? </div>
+			</ons-toolbar>
+
+			<div class="help2" id="help2">
+
+				<div class="Help2_subti1">
+					<p>What is this app?</p>
+				</div>
+
+				<div class="Help2_ex1">
+					<p>This app is tool that help your</p>
+					<p>KJ method more smoothly.</p>
+				</div>
+
+				<div class="Help2_images1">
+					<div id="Help2_image1"><img id="Help2_image1_img" src="img/Post-It.png" /></div>
+				</div>
+
+				<div class="Help2_ex2">
+					<p>If you do KJ method you must </p>
+          <p>make a lot of cards.</p>
+				</div>
+
+				<div class="Help2_images2">
+					<div id="Help2_image2"><img id="Help2_image2_img" src="img/Image.png" /></div>
+				</div>
+
+				<div class="Help2_ex3">
+					<p>This app help you make these cards. </p>
+				</div>
+
+				<ons-button class="Help_Nextbutton" onclick="gohelp3()" style="top:110%">NEXT</ons-button>
+			</div>
+
+		</ons-page>
+	</ons-template>
+
+<!-- How to use this app の記述 -->
+	<ons-template id="help3.html">
+		<ons-page>
+
+			<ons-toolbar class="help3_bar">
+				<div class="left">
+					<!-- <ons-toolbar-button ng-click="app.toggle()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button> -->
+				</div>
+				<div class="center" style="color:#FFFFFF;">
+					How to use this app? </div>
+			</ons-toolbar>
+
+			<div class="help3" id="help3">
+				<div class="Help3_subti1">
+					<p>How to use this app?</p>
+				</div>
+
+				<div class="Help3_ex1">
+					<p>1.1<br>Please touch this icon then<br> you can select the image from library.</p>
+				</div>
+
+				<div class="Help3_image1"><img src="img/picture.png" /></div>
+
+        <div class="Help3_ex1-2">
+					<p>1.2<br>If you want to get picture from <br>camera app, please touch this icon then you can take a picture.</p>
+				</div>
+
+        <div class="Help3_image1-2"><img src="img/C_2.png" /></div>
+
+
+				<div class="Help3_ex2">
+					<p>2.Please evaluate the image.</p>
+				</div>
+
+				<div class="Help3_ex3">
+					<p>3.Please touch this icon.<br>Then you can save the card at your phone library.</p>
+				</div>
+
+				<div class="Help3_image2"><img src="img/save.png" /></div>
+
+				<ons-button class="Help_Backbutton" style="top:200%" onclick="gohelp2()">BACK</ons-button>
+				<ons-button class="Help_Nextbutton" style="top:200%" onclick="gohelp1()">NEXT</ons-button>
+			</div>
+		</ons-page>
+	</ons-template>
+
+
+	<ons-template id="page3.html">
+		<ons-page id="third-page">
+
+			<ons-carousel swipeable overscrollable auto-scroll fullscreen var="carousel">
+				<ons-carousel-item>
+					<div class="page3" style="text-align: center" align="center">
+						<div class="pagePadding">
+							<div class="flame"> <img src="img/tutoreal1.png" alt=""></div>
+							<div class="tutorealText"> This app help you<br> to abserve field<br> and to analize deta<br></div>
+							<div class="maru">
+								<img src="img/maru1.png" alt="" />
+							</div>
+						</div>
+					</div>
+				</ons-carousel-item>
+
+
+<!--  ？？？-->
+				<!-- <ons-carousel-item>
+					<div class="page4" style="text-align: center" align="center">
+						<div class="pagePadding">
+							<div class="flame"> <img src="img/tutoreal2.png" alt=""></div>
+							<div class="tutorealText2"> Take a picture or<br> choose image from<br> your album<br></div>
+							<div class="maru">
+								<img src="img/maru2.png" alt="" />
+							</div>
+						</div>
+					</div>
+				</ons-carousel-item> -->
+
+
+
+<!-- ？？？ -->
+				<!-- <ons-carousel-item>
+					<div class="page5">
+						<div class="pageMargin2"> </div>
+						<div class="content">
+							<div class="tutCul"> <img src="img/Culture_P.png" alt="" /> </div>
+							<div class="tutCulText">
+								<p id="cul">Cultual</p>
+								<p class="iconEx">Circum stance surrounding<br>human and artifact, like<br>"culture" and "custom"<br> </p>
+							</div>
+							<div class="tutPhy"> <img src="img/Physical_P.png" alt="" /> </div>
+							<div class="tutPhyText">
+								<p id="phy">Physical</p>
+								<p class="iconEx">Artifact like "mental model"<br> and "affordance"<br> </div>
+							<div class="tutEmo"> <img src="img/Emotional_P.png" alt="" /> </div>
+							<div class="tutEmoText">
+								<p id="emo">Emotional</p>
+								<p class="iconEx">Human factor like "user's<br> emotion" and "feeling" </p>
+							</div>
+
+							<ons-button id="push-button5"> <span>BACK</span>
+							</ons-button>
+							<div class="maru">
+								<img src="img/maru3.png" alt="" />
+							</div>
+						</div>
+				</ons-carousel-item> -->
+
+				<ons-carousel-cover>
+				</ons-carousel-cover>
+			</ons-carousel>
+
+			</div>
+		</ons-page>
+	</ons-template>
+</body>
+
+</html>

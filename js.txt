@@ -1,0 +1,1866 @@
+var isHelp=true;
+function scroll(){
+if(!isHelp){
+document.addEventListener('touchmove',myHandler , {passive: false});
+  console.log("a");
+
+}else{
+  document.removeEventListener('touchmove', myHandler, {passive: false});
+ console.log("b");
+
+}
+}
+function myHandler(e){
+    e.preventDefault();
+}
+ons.disableAutoStatusBarFill();
+
+var isFocustext = false;
+
+if (navigator.userAgent.indexOf('Android') > 0) {
+  window.addEventListener("focusin", function (e) {
+    // 出力テスト
+    isFocustext = true;
+    $('#cpetc').css('visibility', 'hidden');
+
+  });
+  window.addEventListener("focusout", function (e) {
+    // 出力テスト
+    $('#cpetc').css('visibility', 'visible');
+    isFocustext = false;
+
+  });
+
+}
+
+function go7() {
+     isHelp=false;
+     scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('page1.html', { animation: "fade" });
+}
+function go6() {
+     isHelp=false;
+     scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('home.html', { animation: "fade" });
+  // listbackcolor(1);
+
+}
+function go2() {
+      isHelp=false;
+     scroll();
+document.querySelector('#navigator')
+    .bringPageTop('page2.html', { animation: "fade" });
+  // listbackcolor(2);
+}
+function go3() {
+    isHelp=false;
+       scroll();
+document.querySelector('#navigator')
+    .bringPageTop('page3.html', { animation: "fade" });
+}
+function gohelp() {
+  isHelp=false;
+      scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('help.html', { animation: "fade" });
+  // listbackcolor(3);
+}
+function gohelp1() {
+    isHelp=true;
+    scroll();
+  document.querySelector('#navigator')
+    .bringPageTop('help1.html', { animation: "slide" });
+}
+function gohelp2() {
+    isHelp=true;
+     scroll();
+document.querySelector('#navigator')
+    .bringPageTop('help2.html', { animation: "slide" });
+}
+function gohelp3() {
+    isHelp=true;
+     scroll();
+document.querySelector('#navigator')
+    .bringPageTop('help3.html', { animation: "slide" });
+}
+
+// 付け足し中
+
+function aco() {
+    var tmp = document.getElementById("fingermenu").style.visibility;
+    tmp = (tmp == "visible") ? "hidden" : "visible";
+    document.getElementById("fingermenu").style.visibility = tmp;
+}
+
+function gohome() {
+  isHelp=false;
+      scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('help.html', { animation: "fade" });
+  // listbackcolor(3);
+}
+
+function goeva() {
+  isHelp=false;
+      scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('home.html', { animation: "fade" });
+  // listbackcolor(3);
+}
+
+function gogdeva() {
+  isHelp=false;
+      scroll();
+ document.querySelector('#navigator')
+    .bringPageTop('page8.html', { animation: "slide" });
+    // ここ書きかえろ！！
+  // listbackcolor(3);
+}
+
+// タッチイベント
+
+
+
+ons.bootstrap()
+  .controller('AppController', function ($scope) {
+    this.load = function (page) {
+      $scope.splitter.content.load(page);
+      $scope.splitter.left.close();
+    };
+
+    this.toggle = function () {
+      $scope.splitter.left.toggle();
+    };
+    $scope.prompt = function (material) {
+      var mod = material ? 'material' : undefined;
+      ons.notification.prompt({
+        message: 'What is the meaning of Life, the Universe and Everything?',
+        callback: answer => {
+          if (answer === '42') {
+            ons.notification.alert({ message: 'That\'s the correct answer!' });
+          } else {
+            ons.notification.alert({ message: 'Incorrect! Please try again!' });
+          }
+        }
+      });
+    }
+
+    $scope.confirm = function (material) {
+      ons.notification.confirm({
+        message: 'This dialog can be canceled by tapping the background or using the back button on your device.',
+        cancelable: true,
+        callback: i => {
+          if (i == -1) {
+            // canselされた場合iは-1が代入される
+            onsNotification.alert({ message: 'You canceled it!' });
+          }
+        }
+      });
+    }
+
+  });
+
+ons.ready(function () {
+    if(localStorage.getItem('saveTest1')){
+              isHelp=false;
+             scroll();
+        document.querySelector('#navigator')
+          .bringPageTop("home.html");
+          // listbackcolor(1);
+            }else{
+              isHelp=true;
+             scroll();
+document.querySelector('#navigator')
+// 付け足し中　最初に開くページ書きかえ
+          .bringPageTop("menu.html");
+          // listbackcolor(3);
+           }
+  console.log("Onsen UI is ready!");
+});
+
+document.addEventListener('show', function (event) {
+  var page = event.target;
+  var titleElement = document.querySelector('#toolbar-title');
+
+  /*  if (page.matches('#first-page')) {
+      titleElement.innerHTML = 'My app - Page 1';
+    } else if (page.matches('#second-page')) {
+      titleElement.innerHTML = 'My app - Page 2';
+    }
+    */
+});
+var isFirst=true;
+
+//データを格納する関数
+function save() {
+  var target = first.name.value;
+  var sexdeta = first.sex.value;
+  var countrydeta = first.country.value;
+  var agedeta = first.age.value;
+  // var check2 = first.acs_next.checked;
+isFirst=false;
+  localStorage.setItem('saveTest1', target);
+  localStorage.setItem('saveTest2', sexdeta);
+  localStorage.setItem('saveTest3', countrydeta);
+  localStorage.setItem('saveTest4', agedeta);
+  // localStorage.setItem('saveTest5', check2);
+}
+function firstTry(){
+if(localStorage.getItem('saveTest1').length()>0){
+isFirst=false;
+return "home";
+}else{
+  return "help";
+}
+}
+//データを出力する関数
+function saveOut() {
+  var save1;
+  if (localStorage.getItem('saveTest1')) {
+
+    save1 = localStorage.getItem('saveTest1');
+  } else {
+    save1 = "no_name"
+  }
+  var save2 = localStorage.getItem('saveTest2');
+  var save3 = localStorage.getItem('saveTest3');
+  var save4 = localStorage.getItem('saveTest4');
+  //var save5 = localStorage.getItem('saveTest5');
+  if (save2 == "male") {
+    save2 = "M";
+  }
+  else {
+    save2 = "F";
+  }
+  if (save3 == "japan") {
+    save3 = "JPN";
+
+  }
+  else if (save3 == "korea") {
+    save3 = "KOR";
+  }
+  else if (save3 == "singapore") {
+    save3 = "SGP";
+  }
+  else if (save3 == "china") {
+    save3 = "CHN";
+  }
+  else if (save3 == "malaysia") {
+    save3 = "MYS";
+  }
+  else if (save3 == "taiwan") {
+    save3 = "TWN";
+  }
+  else if (save3 == "hongkong") {
+    save3 = "HNG";
+  }
+
+//国籍は画像にするとか？
+
+  var save11 = document.getElementById('nameValue');
+  var save22 = document.getElementById('sexValue');
+  var save33 = document.getElementById('countryValue');
+  var save44 = document.getElementById('ageValue');
+  //     var save55 = document.getElementById('checkValue');
+
+  save11.textContent = save1;
+  save22.textContent = save2;
+  save33.textContent = save3;
+  save44.textContent = save4;
+  //save55.textContent = save5;
+  /*document.write("<p>取り出した値は " + save1 + "</p>");
+  document.write("<p>取り出した値は " + save2 + "</p>");
+  document.write("<p>取り出した値は " + save3 + "</p>");
+  document.write("<p>取り出した値は " + save4 + "</p>");
+  document.write("<p>取り出した値は " + save5 + "</p>");*/
+}
+
+var textbox = document.getElementById('textim');
+
+function text1(num) {
+  var textbox = document.getElementById('textim' + num);
+  //var rect = textbox.getBoundingClientRect();
+  $(document)
+    .on('drag', '#textim' + num, function (event) {
+      var gesture = event.originalEvent.gesture;
+      var clientRect = this.getBoundingClientRect();
+      var positionX = clientRect.left;
+      var positionY = clientRect.top;
+      x = gesture.center.pageX - positionX;
+      y = gesture.center.pageY - positionY;
+      textbox.style.left = (gesture.center.pageX - 180) + 'px';
+      textbox.style.top = (gesture.center.pageY - 80) + 'px';
+      // console.log(x, y);
+    });
+}
+
+function time() {
+  //myTbl     = new Array("日","月","火","水","木","金","土");
+  myD = new Date();
+  myYear = myD.getYear();
+  myYear4 = (myYear < 2000) ? myYear + 1900 : myYear;
+  myMonth = myD.getMonth() + 1;
+  myDate = myD.getDate();
+  /*myHours   = myD.getHours();
+  myMinutes = myD.getMinutes();
+  mySeconds = myD.getSeconds();*/
+  myMess = myYear4 + "." + myMonth + "." + myDate;
+  var timeApp = document.getElementById("time1");
+  timeApp.textContent = myMess;
+}
+//画像切り替え関数
+var img1 = new Array();
+img1[0] = new Image();
+img1[0].src = "img/NC-Cul.png";
+img1[1] = new Image();
+img1[1].src = "img/Cul.png";
+img1[2] = new Image();
+img1[2].src = "img/Deep-Cul.png";
+var cnt1 = 0;
+
+function changePic1(id) {
+  if (cnt1 == 2) {
+    cnt1 = 0;
+  }
+  else {
+    cnt1++;
+  }
+  //画像を切り替える
+  document.getElementById(id)
+    .src = img1[cnt1].src;
+  if(id=="stamp11"){
+  if(cnt1==0){
+  document.getElementById("culmoji").style="color:#9FA0A0";
+  document.getElementById("page6").style.backgroundColor = 'rgba(238, 238, 238, 1)'
+  gopic();
+}else if(cnt1==1){
+  document.getElementById("culmoji").style="color:#0E6EB8";
+  document.getElementById("page6").style.backgroundColor = 'rgba(255, 194, 125,1.0)'
+}else if(cnt1==2){
+  document.getElementById("culmoji").style="color:#183C4D";
+  document.getElementById("page6").style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+}
+  }
+}
+var img2 = new Array();
+img2[0] = new Image();
+img2[0].src = "img/NC-Emo.png";
+img2[1] = new Image();
+img2[1].src = "img/Emo.png";
+img2[2] = new Image();
+img2[2].src = "img/Deep-Emo.png";
+var cnt2 = 0;
+
+function changePic2(id) {
+  if (cnt2 == 2) {
+    cnt2 = 0;
+  }
+  else {
+    cnt2++;
+  }
+  //画像を切り替える
+  document.getElementById(id)
+    .src = img2[cnt2].src;
+if(id=="stamp22"){
+  if(cnt2==0){
+  document.getElementById("emomoji").style="color:#9FA0A0";
+  document.getElementById("page6").style.backgroundColor = 'rgba(238, 238, 238, 1)'
+}else if(cnt2==1){
+  document.getElementById("emomoji").style="color:#AE1E25";
+  document.getElementById("page6").style.backgroundColor = 'rgba(255, 194, 125,1.0)'
+}else if(cnt2==2){
+  document.getElementById("emomoji").style="color:#611224";
+  document.getElementById("page6").style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+}
+}
+}
+
+var img3 = new Array();
+img3[0] = new Image();
+img3[0].src = "img/NC-Phy.png";
+img3[1] = new Image();
+img3[1].src = "img/Phy.png";
+img3[2] = new Image();
+img3[2].src = "img/Deep-Phy.png";
+var cnt3 = 0;
+
+function changePic3(id) {
+  if (cnt3 == 2) {
+    cnt3 = 0;
+  }
+  else {
+    cnt3++;
+  }
+  //画像を切り替える
+  document.getElementById(id)
+    .src = img3[cnt3].src;
+    if(id=="stamp33"){
+  if(cnt3==0){
+  document.getElementById("phymoji").style="color:#9FA0A0";
+  document.getElementById("page6").style.backgroundColor = 'rgba(238, 238, 238, 1)'
+}else if(cnt3==1){
+  document.getElementById("phymoji").style="color:#8EC31F";
+  document.getElementById("page6").style.backgroundColor = 'rgba(255, 194, 125,1.0)'
+}else if(cnt3==2){
+  document.getElementById("phymoji").style="color:#42572B";
+  document.getElementById("page6").style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+}
+    }
+}
+
+var isEvaluate = false;
+function changeColor0(id) {
+  if(id=="negative"){
+  document.getElementById('page6')
+    .style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+  document.getElementById('waku1')
+    .style.backgroundColor = 'rgba(54, 49, 143,1.0)';
+  document.getElementById('waku2')
+    .style.backgroundColor = 'rgba(54, 49, 143,1.0)';
+  document.getElementById('waku3')
+    .style.backgroundColor = 'rgba(54, 49, 143,1.0)';
+  document.getElementById('waku4')
+    .style.backgroundColor = 'rgba(54, 49, 143,1.0)';
+
+
+  document.getElementById('textim1')
+    .style.backgroundColor = 'rgb(183, 99, 176)';
+  /*    document.getElementById('textim2')
+      .style.backgroundColor = 'rgb(202, 179, 103)';
+      document.getElementById('textim3')
+      .style.backgroundColor = 'rgb(93, 180, 119)';
+    */
+  document.getElementById('positive')
+    .style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+  document.getElementById('negative')
+    .style.backgroundColor = 'rgba(182, 179, 229,1.0)';
+  document.getElementById("positive")
+    .src = "img/NC-Positive.png";
+  document.getElementById("negative")
+    .src = "img/Negative.png";
+          isEvaluate = true;
+
+  }else{
+  document.getElementById("positive_sample_img")
+    .src = "img/NC-Positive.png"
+  document.getElementById("negative_sample_img")
+    .src = "img/Negative.png"
+      }
+}
+function changeColor10(id) {
+if(id=="positive"){
+  document.getElementById('page6')
+    .style.backgroundColor = 'rgba(255, 194, 125,1.0)';
+  document.getElementById('waku1')
+    .style.backgroundColor = 'rgba(243, 129, 0,1.0)';
+  document.getElementById('waku2')
+    .style.backgroundColor = 'rgba(243, 129, 0,1.0)';
+  document.getElementById('waku3')
+    .style.backgroundColor = 'rgba(243, 129, 0,1.0)';
+  document.getElementById('waku4')
+    .style.backgroundColor = 'rgba(243, 129, 0,1.0)';
+  document.getElementById('textim1')
+    .style.backgroundColor = 'rgb(245, 175, 240)';
+  /*    document.getElementById('textim2')
+      .style.backgroundColor = 'rgb(255, 237, 177)';
+      document.getElementById('textim3')
+      .style.backgroundColor = 'rgb(185, 255, 206)';
+   */
+  document.getElementById('positive')
+    .style.backgroundColor = 'rgba(255, 194, 125,1.0)';
+  document.getElementById('negative')
+    .style.backgroundColor = 'rgba(255, 194, 125,1.0)';
+  document.getElementById("positive")
+    .src = "img/Positive.png";
+  document.getElementById("negative")
+    .src = "img/NC-Negative.png";
+            isEvaluate = true;
+
+}else{
+      document.getElementById("positive_sample_img")
+    .src = "img/Positive.png"
+  document.getElementById("negative_sample_img")
+    .src = "img/NC-Negative.png"
+}
+  /*mojiiro document.getElementById('negative')
+       .style.color = '#CCCCCC';
+   document.getElementById('positive')
+       .style.color = 'rgba(243, 129, 0,1.0)';
+       */
+
+}
+
+function changeColor5() {
+  document.getElementById('page6')
+    .style.backgroundColor = '#EEEEEE';
+  document.getElementById('waku1')
+    .style.backgroundColor = '#CCCCCC';
+  document.getElementById('waku2')
+    .style.backgroundColor = '#CCCCCC';
+  document.getElementById('waku3')
+    .style.backgroundColor = '#CCCCCC';
+  document.getElementById('waku4')
+    .style.backgroundColor = '#CCCCCC';
+  document.getElementById('textim1')
+    .style.backgroundColor = 'rgb(255, 125, 244)';
+  document.getElementById('textim1')
+    .style.left = "-40%";
+  document.getElementById('textim1')
+    .style.top = "50%";
+  document.getElementById('text')
+    .value = "";
+  document.getElementById('positive')
+    .style.backgroundColor = '#EEEEEE';
+  document.getElementById('negative')
+    .style.backgroundColor = '#EEEEEE';
+  document.getElementById("positive")
+    .src = "img/NC-Positive.png";
+  document.getElementById("negative")
+    .src = "img/NC-Negative.png";
+      document.getElementById("culmoji").style="color:#9FA0A0";
+      document.getElementById("emomoji").style="color:#9FA0A0";
+      document.getElementById("phymoji").style="color:#9FA0A0";
+  /*   document.getElementById('textim2')
+     .style.backgroundColor = 'rgb(255, 225, 125)';
+     document.getElementById('textim3')
+     .style.backgroundColor = 'rgb(125, 255, 164)';
+ */
+  isEvaluate = false;
+
+}
+//選択した矩形の座標とスケール
+var imgx, imgy, imgscale;
+//写真の縦横
+var height, width;
+//写真の向き 0=縦長, 1=横長
+var muki;
+//imgで表示される写真のサイズを記憶
+var winwidth, winheight;
+// var mainimages = null;
+var images = null;
+var imagesw = null;
+var imagesh = null;
+var img = new Image();
+var orient;
+var isImg = false;
+function onFail() {
+ // alert("写真を取得できませんでした")
+}
+
+function onSuccess(imageURI) {
+  img.src = imageURI;
+  imagesw = img.width;
+  imagesh = img.height;
+  isImg = true;
+
+ // alert(img.src);
+
+  CordovaExif.readData(imageURI,
+    function (exifObject) {
+      orient = exifObject.Orientation;
+    //  alert(orient);
+    }
+  );
+  if (imageURI.substring(0, 21) == "content://com.android") {
+    photo_split = imageURI.split("%3A");
+    img.src = "content://media/external/images/media/" + photo_split[1];
+  }
+  document.querySelector('#navigator')
+    .bringPageTop('page8.html');
+}
+function getPicCam() {
+  var option = {
+    quality: 50,
+    sourceType: Camera.PictureSourceType.CAMERA,
+    // destinationType: Camera.DestinationType.DATA_URL
+    destinationType: Camera.DestinationType.FILE_URI
+  };
+  navigator.camera.getPicture(onSuccess, onFail, option);
+}
+
+function getPicLib() {
+  var option = {
+    quality: 50,
+    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    // destinationType: Camera.DestinationType.DATA_URL
+    destinationType: Camera.DestinationType.FILE_URI
+  };
+  navigator.camera.getPicture(onSuccess, onFail, option);
+}
+
+
+//トリミングページの処理
+function draw1() {
+  var x = 100,
+    y = 100;
+  var prevScale = 2;
+  var scale = 2;
+  var tem = 1;
+  var pic = document.getElementById('picture');
+
+  pic.src = img.src;
+  // canvasの定義
+  pic.onload = function () {
+    if (pic.width <= pic.height) { //縦長の時
+      height = img.width;
+      width = img.height;
+      muki = 0;
+    }
+    else if (pic.height <= pic.width) { //横長の時
+      height = img.height;
+      width = img.width;
+      muki = 1;
+    }
+
+    console.log("picの値");
+    console.log("height=" + height);
+    console.log("width=" + width);
+    var canvas = document.getElementById('c1');
+    var ctx = canvas.getContext('2d');
+
+    canvas.width = pic.width;
+    canvas.height = pic.height;
+    //imgで表示される写真のサイズを記憶
+    winwidth = canvas.width;
+    winheight = canvas.height;
+    /* document.getElementById("c1")
+       .addEventListener("touchstart", function (event) {
+         var touchObject = event.changedTouches[0];
+         var touchX = touchObject.pageX;
+         var touchY = touchObject.pageY;
+         // 要素の位置を取得
+         var clientRect = this.getBoundingClientRect();
+         var positionX = clientRect.left + window.pageXOffset;
+         var positionY = clientRect.top + window.pageYOffset;
+         // 要素内におけるタッチ位置を計算
+         x = touchX - positionX;
+         y = touchY - positionY;
+         if (x - 50 * scale < 0) {
+           x = 50 * scale;
+           if (y - 50 * scale < 0) {
+             y = 50 * scale;
+           }
+           else if (y + 50 * scale > canvas.height) {
+             y = canvas.height - 50 * scale;
+           }
+         }
+         else if (x + 50 * scale > canvas.width) {
+           x = canvas.width - 50 * scale;
+           if (y - 50 * scale < 0) {
+             y = 50 * scale;
+           }
+           else if (y + 50 * scale > canvas.height) {
+             y = canvas.height - 50 * scale;
+           }
+         }
+         else if (y - 50 * scale < 0) {
+           y = 50 * scale;
+         }
+         else if (y + 50 * scale > canvas.height) {
+           y = canvas.height - 50 * scale;
+         }
+         imgx = x - 50 * scale;
+         imgy = y - 50 * scale;
+         imgscale = scale;
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         ctx.fillStyle = 'rgba(255,255,255,0.5)';
+         ctx.fillRect(0, 0, canvas.width, canvas.height);
+         ctx.clearRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+         ctx.lineWidth = 3;
+         ctx.strokeRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+       });
+       */
+    $(document)
+      .on('drag', '#c1', function (event) {
+        var gesture = event.originalEvent.gesture;
+        var clientRect = this.getBoundingClientRect();
+        var positionX = clientRect.left + window.pageXOffset;
+        var positionY = clientRect.top + window.pageYOffset;
+        x = gesture.center.pageX - positionX;
+        y = gesture.center.pageY - positionY;
+        // console.log("dragx="+x);
+        //     console.log("dragy="+y);
+        if (x - 50 * scale < 0) {
+          x = 50 * scale;
+          if (y - 50 * scale < 0) {
+            y = 50 * scale;
+          }
+          else if (y + 50 * scale > canvas.height) {
+            y = canvas.height - 50 * scale;
+          }
+        }
+        else if (x + 50 * scale > canvas.width) {
+          x = canvas.width - 50 * scale;
+          if (y - 50 * scale < 0) {
+            y = 50 * scale;
+          }
+          else if (y + 50 * scale > canvas.height) {
+            y = canvas.height - 50 * scale;
+          }
+        }
+        else if (y - 50 * scale < 0) {
+          y = 50 * scale;
+        }
+        else if (y + 50 * scale > canvas.height) {
+          y = canvas.height - 50 * scale;
+        }
+        imgx = x - 50 * scale;
+        imgy = y - 50 * scale;
+        imgscale = scale;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+        ctx.lineWidth = 3;
+        ctx.strokeRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+      });
+    $(document)
+      .on('pinch', '#c1', function (event) {
+        var gesture = event.originalEvent.gesture;
+        // scale = Math.max(0.5,Math.min(prevScale*gesture.scale,3));
+        if (x - 50 * scale < 0) {
+          x = 50 * scale;
+          if (y - 50 * scale < 0) {
+            y = 50 * scale;
+          }
+          else if (y + 50 * scale > canvas.height) {
+            y = canvas.height - 50 * scale;
+          }
+        }
+        else if (x + 50 * scale > canvas.width) {
+          x = canvas.width - 50 * scale;
+          if (y - 50 * scale < 0) {
+            y = 50 * scale;
+          }
+          else if (y + 50 * scale > canvas.height) {
+            y = canvas.height - 50 * scale;
+          }
+        }
+        else if (y - 50 * scale < 0) {
+          y = 50 * scale;
+        }
+        else if (y + 50 * scale > canvas.height) {
+          y = canvas.height - 50 * scale;
+        }
+        if (50 * scale + 50 * scale >= canvas.width && gesture.scale > 1.000 || 50 * scale + 50 * scale >= canvas.height && gesture.scale > 1.000) {
+          scale = tem;
+        }
+        else {
+          scale = prevScale + gesture.scale;
+          prevScale = gesture.scale;
+          tem = scale;
+        }
+        //console.log("ピンチイン"+gesture.scale);
+        imgx = x - 50 * scale;
+        imgy = y - 50 * scale;
+        imgscale = scale;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+        ctx.lineWidth = 3;
+        ctx.strokeRect(x - 50 * scale, y - 50 * scale, 100 * scale, 100 * scale);
+      });
+    imgx = canvas.width / 2 - 50 * scale;
+    imgy = canvas.height / 2 - 50 * scale;
+    imgscale = scale;
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(canvas.width / 2 - 50 * scale, canvas.height / 2 - 50 * scale, 100 * scale, 100 * scale);
+    ctx.lineWidth = 3;
+    ctx.strokeRect(canvas.width / 2 - 50 * scale, canvas.height / 2 - 50 * scale, 100 * scale, 100 * scale);
+    console.log("canvas.width=" + canvas.width);
+    console.log("canvas.height=" + canvas.height);
+    console.log("imagesw=" + imagesw);
+    console.log("imagesh=" + imagesh);
+  }
+}
+
+function drawimage() {
+  var canvas = document.getElementById('c2');
+  var ctx = canvas.getContext('2d');
+  canvas.width = winwidth * 0.86;
+  canvas.height = winwidth * 0.86;
+  if (navigator.userAgent.indexOf('Android') > 0) {
+    orient = 1;
+  }
+  if (orient == 5 || orient == 6 ||
+    orient == 7 || orient == 8) {
+    height = img.width;
+    width = img.height;
+  }
+
+  else {
+    height = img.height;
+    width = img.width;
+  }
+
+  var picx, picy;
+
+  picy = imgy * (width / winwidth);
+  picx = imgx * (height / winheight);
+
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+
+  //外0 中0  6
+  if (orient == 6) {
+    ctx.rotate(90 * Math.PI / 180);
+  }
+
+  //外1 中3  3
+  else if (orient == 3) {
+    ctx.rotate(90 * Math.PI / 180 * 2);
+  }
+
+  //外2 中2  8
+  else if (orient == 8) {
+    ctx.rotate(90 * Math.PI / 180 * 3);
+  }
+
+  //外3 中1  1
+  else if (orient == 1) {
+    ctx.rotate(90 * Math.PI / 180 * 4);
+  }
+
+  ctx.translate(-canvas.width / 2, -canvas.height / 2);
+
+  //外0 中0
+  if (orient == 6) {
+    ctx.drawImage(
+      img,
+      picy,
+      width - picx - width / winwidth * (100 * imgscale),
+      width / winwidth * (100 * imgscale),
+      height / winheight * (100 * imgscale),
+      0,
+      0,
+      winwidth * 0.86,
+      winwidth * 0.86
+    );
+  }
+
+
+
+  //外1 中3
+  else if (orient == 3) {
+    ctx.drawImage(
+      img,
+      width - picx,
+      height - picy,
+      -width / winwidth * (100 * imgscale),
+      -height / winheight * (100 * imgscale),
+      0,
+      0,
+      winwidth * 0.86,
+      winwidth * 0.86
+    );
+  }
+
+  //外2 中2
+  else if (orient == 8) {
+    ctx.drawImage(
+      img,
+      height - picy,
+      picx,
+      - width / winwidth * (100 * imgscale),
+      height / winheight * (100 * imgscale),
+      0,
+      0,
+      winwidth * 0.86,
+      winwidth * 0.86
+    );
+  }
+
+  //外3 中1
+  else if (orient == 1) {
+    ctx.drawImage(
+      img,
+      picx,
+      picy,
+      width / winwidth * (100 * imgscale),
+      height / winheight * (100 * imgscale),
+      0,
+      0,
+      winwidth * 0.86,
+      winwidth * 0.86
+    );
+  }
+  var png = canvas.toDataURL();
+}
+var idchange = function () {
+  var number = document.querySelector('#navigator')
+    .pages.length;
+  console.log(document.querySelector('#navigator')
+    .pages[number - 2]);
+  console.log(number);
+  if (number > 1)
+    document.querySelector('#navigator')
+      .pages[number - 2].remove();
+}
+var idchangetrim = function () {
+  var number = document.querySelector('#navigator')
+    .pages.length;
+  for (var i = 0; i < number; i++) {
+    if (document.querySelector('#navigator').pages[i].id == "eight-page") {
+      document.querySelector('#navigator').pages[i].remove();
+      break;
+    }
+  }
+}
+var idchange6 = function () {
+  var number = document.querySelector('#navigator')
+    .pages.length;
+  for (var i = 0; i < number; i++) {
+    if (document.querySelector('#navigator').pages[i].id == "first-page") {
+      document.querySelector('#navigator').pages[i].remove();
+      break;
+    }
+  }
+}
+
+
+document.addEventListener('init', function (event) {
+  var page = event.target;
+  if (page.matches('#first-page')) {
+    drawimage();
+    time();
+    saveOut();
+    var number = document.querySelector('#navigator')
+      .pages.length;
+
+    console.log(number);
+    //text1();
+    //   text1(2);
+    //text1(3);
+  }
+  else if (page.matches('#second-page')) {
+    page.querySelector('#push-button2')
+      .onclick = function () {
+        document.querySelector('#navigator')
+          .bringPageTop("home.html", { animation: "slide" });
+        save();
+        saveOut();
+        // listbackcolor(1);
+
+        //only();
+        //ページ３で結果を入力する際は外す
+
+      };
+  }
+  else if (page.matches('#third-page')) {
+    page.querySelector('#push-button5')
+      .onclick = function () {
+        document.querySelector('#navigator')
+          .popPage({ animation: "fade" });
+
+
+      };
+  }
+  /* else if (page.matches('#forth-page'))
+   {
+       page.querySelector('#push-button4')
+           .onclick = function()
+           {
+               document.querySelector('#navigator')
+                   .bringPageTop("page5.html", {  animation: "fade" });
+           };
+   }
+   else if (page.matches('#fifth-page'))
+   {
+       page.querySelector('#push-button5')
+           .onclick = function()
+           {
+               document.querySelector('#navigator')
+                   .bringPageTop("page6.html");
+               saveSeconds();
+               var save6 = localStorage.getItem('saveTest6');
+               if (save6 == "false")
+               {}
+               else
+               {
+                   //次回から表示しない
+                   modal_close2();
+               }
+           };
+   }*/
+  else if (page.matches('#sixth-page')) {
+    console.log(is6);
+    is6 = true;
+    time();
+    saveOut();
+
+    //drawimage();
+
+    // navi.pages[2].remove();
+    // document.querySelector('navigator').pages[2].remove();
+  }
+  else if (page.matches('#top-page')) {
+    // console.log(document.getElementById("c3"));
+    //idchange();
+  }
+  else if (page.matches('#eight-page')) {
+    draw1();
+    page.querySelector('#push-button')
+      .onclick = function () {
+        idchange6();
+        isEvaluate = false;
+        // document.querySelector('#navigator').popPage();
+        document.querySelector('#navigator')
+          // .bringPageTop("home.html");
+          .bringPageTop("home.html");
+          // ここ書きかえろ gdeva
+        // document.querySelector('#navigator').pushPage("page6.html");
+        //drawimage();
+        // idchange();
+      }
+  }
+});
+
+
+function screen() {
+  if (isImg && isEvaluate) {
+    isImg = false;
+    navigator.screenshot.save(function (error, res) {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log('ok', res.filePath);
+
+        var MEsuccess = function (msg) {
+          console.info(msg);
+        };
+
+        var MEerror = function (err) {
+          console.error(err);
+        };
+        if (navigator.userAgent.indexOf('Android') == -1) {
+          saveImageToPhone(res.filePath, MEsuccess, MEerror);
+        }
+        reset();
+
+      }
+    }, 'jpg', 90);
+  } else if ((!isImg) && (isEvaluate)) {
+    ons.notification.alert({
+      message: 'The photo has not been selected',
+      // もしくはmessageHTML: '<div>HTML形式のメッセージ</div>',
+      title: 'Caution',
+      buttonLabel: 'OK',
+      animation: 'default', // もしくは'none'
+      // modifier: 'optional-modifier'
+      callback: function () {
+        // ボタンがタップされた
+      }
+    });
+  } else if ((isImg) && (!isEvaluate)) {
+    ons.notification.alert({
+      message: 'The evaluation has not been selected',
+      // もしくはmessageHTML: '<div>HTML形式のメッセージ</div>',
+      title: 'Caution',
+      buttonLabel: 'OK',
+      animation: 'default', // もしくは'none'
+      // modifier: 'optional-modifier'
+      callback: function () {
+        // ボタンがタップされた
+      }
+    });
+  } else if ((!isImg) && (!isEvaluate)) {
+    ons.notification.alert({
+      message: 'The photo and evaluation has not been selected',
+      // もしくはmessageHTML: '<div>HTML形式のメッセージ</div>',
+      title: 'Caution',
+      buttonLabel: 'OK',
+      animation: 'default', // もしくは'none'
+      // modifier: 'optional-modifier'
+      callback: function () {
+        // ボタンがタップされた
+      }
+    });
+  }
+}
+
+function saveImageToPhone(url, success, error) {
+  var canvas, context, imageDataUrl, imageData;
+  var img = new Image();
+  img.onload = function () {
+    canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0);
+    try {
+      imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+      imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
+      cordova.exec(
+        success,
+        error,
+        'Canvas2ImagePlugin',
+        'saveImageDataToLibrary',
+        [imageData]
+      );
+    }
+    catch (e) {
+      error(e.message);
+    }
+  };
+  try {
+    img.src = url;
+  }
+  catch (e) {
+    error(e.message);
+  }
+}
+
+function reset() {
+  document.getElementById("stamp11")
+    .src = img1[0].src;
+  cnt1 = 0;
+  document.getElementById("stamp22")
+    .src = img2[0].src;
+  cnt2 = 0;
+  document.getElementById("stamp33")
+    .src = img3[0].src;
+  cnt3 = 0;
+
+  var canvas = document.getElementById('c2');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, winwidth * 0.86, winwidth * 0.86);
+
+
+  changeColor5();
+  //alert("The photo has been saved");
+  ///////////////////////////////////////1/10
+  ons.notification.alert({
+    message: 'The photo has been saved',
+    // もしくはmessageHTML: '<div>HTML形式のメッセージ</div>',
+    title: 'Save',
+    buttonLabel: 'OK',
+    animation: 'default', // もしくは'none'
+    // modifier: 'optional-modifier'
+    callback: function () {
+      // ボタンがタップされた
+    }
+  });
+  ////////////////////////////////////////////////////1/10
+}
+// -------------------------------------------------------------
+// <canvas>タグで
+// onMouseDown="startDraw(event)"
+// onMouseMove="Draw(event)"
+// onMouseUp="endDraw(event)" で実行します
+// -------------------------------------------------------------
+//mousedownチェック用
+var mouseDown = false;
+//マウス座標保存用
+var wbound = 0;
+var stX = 0;
+var stY = 0;
+var x = 0;
+var y = 0;
+//canvas要素保存用
+var canvas;
+var context;
+//描画の開始
+
+
+// function listbackcolor(number) {
+
+//   if (number == 1) {
+//     document.getElementById("list1").style.backgroundColor = "#CCCCCC";
+//     document.getElementById("list2").style.backgroundColor = "#888888";
+//     document.getElementById("list3").style.backgroundColor = "#888888";
+
+//   } else if (number == 2) {
+//     document.getElementById("list1").style.backgroundColor = "#888888";
+//     document.getElementById("list2").style.backgroundColor = "#CCCCCC";
+//     document.getElementById("list3").style.backgroundColor = "#888888";
+
+
+//   } else if (number == 3) {
+//     document.getElementById("list1").style.backgroundColor = "#888888";
+//     document.getElementById("list2").style.backgroundColor = "#888888";
+//     document.getElementById("list3").style.backgroundColor = "#CCCCCC";
+
+//   }
+
+// }
+
+var CordovaExif = function () {
+
+  var Exif, FileHandle, BinaryImage;
+
+  FileHandle = {
+    url: null,
+    callback: null,
+    getExif: false,
+
+    setup: function (imageURI, callback, getExif) {
+      FileHandle.url = imageURI;
+      FileHandle.callback = callback;
+
+      if (getExif) {
+        FileHandle.getExif = getExif;
+      }
+
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, FileHandle.gotFS, FileHandle.fail);
+    },
+
+    readData: function (imageURI, callback) {
+      FileHandle.setup(imageURI, callback, true);
+    },
+
+    readBase64: function (imageURI, callback) {
+      FileHandle.setup(imageURI, callback, false);
+    },
+
+    gotFS: function (fileSystem) {
+      window.resolveLocalFileSystemURL(FileHandle.url, FileHandle.gotFileEntry, FileHandle.fail);
+    },
+
+    gotFileEntry: function (fileEntry) {
+      fileEntry.file(FileHandle.readFile, FileHandle.fail);
+    },
+
+    fail: function (error) {
+      // error.code
+    },
+
+    readFile: function (file) {
+      var fileReader = new FileReader();
+      fileReader.onload = FileHandle.readFileSuccess;
+      fileReader.readAsBinaryString(file);
+    },
+
+    readFileSuccess: function (e) {
+      var binaryImage,
+        binTarget = e.target.result;
+
+      if (!FileHandle.getExif) {
+        FileHandle.callback(window.btoa(binTarget));
+        return false;
+      }
+
+      binaryImage = new BinaryImage(binTarget);
+      FileHandle.handleBinaryImage(binaryImage);
+    },
+
+    handleBinaryImage: function (binaryImage) {
+      var exifObject = Exif.find(binaryImage);
+      FileHandle.callback(exifObject);
+    }
+  };
+
+  Exif = {
+    find: function (image) {
+      // Check if is a valid JPEG
+      if (image.getByteAt(0) !== 0xFF || image.getByteAt(1) !== 0xD8) return false;
+
+      var offset = 2;
+      while (offset < image.length) {
+        if (image.getByteAt(offset) === 0xFF) {
+          // Check if is a EXIF marker
+          if (image.getByteAt(offset + 1) === 0xE1)
+            return Exif.read(image, offset + 4);
+          offset += 2;
+        } else ++offset;
+      }
+      return false;
+    },
+
+    read: function (image, start) {
+
+      var tag,
+        tags,
+        gpsData,
+        exifData,
+        bigEndian,
+        exifOffset = start + 6;
+
+
+      // Check if is a valid EXIF data
+      if (image.getStringAt(start, 4) !== 'Exif') {
+        return false;
+      }
+
+
+      // May be 0x4949 or 0x4D4D to be valid
+      if (image.getShortAt(exifOffset) === 0x4949) {
+        bigEndian = false;
+      }
+      else if (image.getShortAt(exifOffset) === 0x4D4D) {
+        bigEndian = true;
+      }
+      else {
+        return false;
+      }
+
+
+      // May be 0x4949 or 0x002A to be valid
+      if (image.getShortAt(exifOffset + 2, bigEndian) !== 0x002A) {
+        return false;
+      }
+
+
+      // First offset may be 8
+      if (image.getLongAt(exifOffset + 4, bigEndian) !== 0x00000008) {
+        return false;
+      }
+
+
+      tags = Exif.readTags(image, exifOffset, exifOffset + 8, Exif.StringTags, bigEndian);
+
+
+      if (tags.ExifIFDPointer) {
+        exifData = Exif.readTags(image, exifOffset, exifOffset + tags.ExifIFDPointer, Exif.StringTags, bigEndian);
+
+        for (tag in exifData) {
+
+          switch (tag) {
+            case 'LightSource':
+            case 'Flash':
+            case 'MeteringMode':
+            case 'ExposureProgram':
+            case 'SensingMethod':
+            case 'SceneCaptureType':
+            case 'SceneType':
+            case 'CustomRendered':
+            case 'WhiteBalance':
+            case 'GainControl':
+            case 'Contrast':
+            case 'Saturation':
+            case 'Sharpness':
+            case 'SubjectDistanceRange':
+            case 'FileSource':
+              exifData[tag] = Exif.StringValues[tag][exifData[tag]];
+              break;
+
+            case 'ExifVersion':
+            case 'FlashpixVersion':
+              exifData[tag] = String.fromCharCode(exifData[tag][0], exifData[tag][1], exifData[tag][2], exifData[tag][3]);
+              break;
+
+            case 'ComponentsConfiguration':
+              exifData[tag] =
+                Exif.StringValues.Components[exifData[tag][0]] +
+                Exif.StringValues.Components[exifData[tag][1]] +
+                Exif.StringValues.Components[exifData[tag][2]] +
+                Exif.StringValues.Components[exifData[tag][3]];
+              break;
+
+          }
+
+          tags[tag] = exifData[tag];
+        }
+      }
+
+      if (tags.GPSInfoIFDPointer) {
+        gpsData = Exif.readTags(image, exifOffset, exifOffset + tags.GPSInfoIFDPointer, Exif.GPSTags, bigEndian);
+
+        for (tag in gpsData) {
+          switch (tag) {
+            case 'GPSVersionID':
+              gpsData[tag] = gpsData[tag][0] + '.' + gpsData[tag][1] + '.' + gpsData[tag][2] + '.' + gpsData[tag][3];
+              break;
+          }
+          tags[tag] = gpsData[tag];
+        }
+
+      }
+
+      return tags;
+    },
+
+    readTags: function (image, exifStart, dirStart, strings, bigEndian) {
+      var tag,
+        tags = {},
+        entryOffset,
+        entries = image.getShortAt(dirStart, bigEndian);
+
+      for (var i = 0; i < entries; i++) {
+        entryOffset = dirStart + i * 12 + 2;
+        tag = strings[image.getShortAt(entryOffset, bigEndian)];
+
+        if (tag) {
+          tags[tag] = Exif.readTagValue(image, entryOffset, exifStart, dirStart, bigEndian);
+        }
+      }
+
+      return tags;
+    },
+
+    readTagValue: function (file, entryOffset, exifStart, dirStart, bigEndian) {
+      var n,
+        val,
+        vals,
+        data,
+        type,
+        offset,
+        numValues,
+        numerator,
+        valueOffset,
+        denominator;
+
+      type = file.getShortAt(entryOffset + 2, bigEndian);
+      numValues = file.getLongAt(entryOffset + 4, bigEndian);
+      valueOffset = file.getLongAt(entryOffset + 8, bigEndian) + exifStart;
+
+      switch (type) {
+
+        // 1 = Byte, 8-bit unsigned int;
+        // 7 = undefined, 8-bit byte, value depending on field;
+        case 1:
+        case 7:
+          if (numValues === 1) {
+            data = file.getByteAt(entryOffset + 8, bigEndian);
+          } else {
+            offset = numValues > 4 ? valueOffset : (entryOffset + 8);
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              vals[n] = file.getByteAt(offset + n);
+            }
+            data = vals;
+          }
+          break;
+
+
+        // 2 = ascii, 8-bit byte;
+        case 2:
+          offset = numValues > 4 ? valueOffset : (entryOffset + 8);
+          data = file.getStringAt(offset, numValues - 1);
+          break;
+
+
+        // 3 = short, 16 bit int;
+        case 3:
+          if (numValues === 1) {
+            data = file.getShortAt(entryOffset + 8, bigEndian);
+          } else {
+            offset = numValues > 2 ? valueOffset : (entryOffset + 8);
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              vals[n] = file.getShortAt(offset + 2 * n, bigEndian);
+            }
+            data = vals;
+          }
+          break;
+
+
+        // 4 = long, 32 bit int;
+        case 4:
+          if (numValues === 1) {
+            data = file.getLongAt(entryOffset + 8, bigEndian);
+          } else {
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              vals[n] = file.getLongAt(valueOffset + 4 * n, bigEndian);
+            }
+            data = vals;
+          }
+          break;
+
+
+        // 5 = rational = two long values, first is numerator, second is denominator;
+        case 5:
+          if (numValues === 1) {
+            numerator = file.getLongAt(valueOffset, bigEndian);
+            denominator = file.getLongAt(valueOffset + 4, bigEndian);
+            val = new Number(numerator / denominator);
+            val.numerator = numerator;
+            val.denominator = denominator;
+            data = val;
+          } else {
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              numerator = file.getLongAt(valueOffset + 8 * n, bigEndian);
+              denominator = file.getLongAt(valueOffset + 4 + 8 * n, bigEndian);
+              vals[n] = new Number(numerator / denominator);
+              vals[n].numerator = numerator;
+              vals[n].denominator = denominator;
+            }
+            data = vals;
+          }
+          break;
+
+
+        // 9 = slong, 32 bit signed int;
+        case 9:
+          if (numValues === 1) {
+            data = file.getSLongAt(entryOffset + 8, bigEndian);
+          } else {
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              vals[n] = file.getSLongAt(valueOffset + 4 * n, bigEndian);
+            }
+            data = vals;
+          }
+          break;
+
+
+        // 10 = signed rational, two slongs, first is numerator, second is denominator;
+        case 10:
+          if (numValues === 1) {
+            data = file.getSLongAt(valueOffset, bigEndian) / file.getSLongAt(valueOffset + 4, bigEndian);
+          } else {
+            vals = [];
+            for (n = 0; n < numValues; n++) {
+              vals[n] = file.getSLongAt(valueOffset + 8 * n, bigEndian) / file.getSLongAt(valueOffset + 4 + 8 * n, bigEndian);
+            }
+            data = vals;
+          }
+          break;
+      }
+
+      return data;
+    },
+
+    StringTags: {
+      0x9000: 'ExifVersion',
+      0xA000: 'FlashpixVersion',
+      0xA001: 'ColorSpace',
+      0xA002: 'PixelXDimension',
+      0xA003: 'PixelYDimension',
+      0x9101: 'ComponentsConfiguration',
+      0x9102: 'CompressedBitsPerPixel',
+      0x927C: 'MakerNote',
+      0x9286: 'UserComment',
+      0xA004: 'RelatedSoundFile',
+      0x9003: 'DateTimeOriginal',
+      0x9004: 'DateTimeDigitized',
+      0x9290: 'SubsecTime',
+      0x9291: 'SubsecTimeOriginal',
+      0x9292: 'SubsecTimeDigitized',
+      0x829A: 'ExposureTime',
+      0x829D: 'FNumber',
+      0x8822: 'ExposureProgram',
+      0x8824: 'SpectralSensitivity',
+      0x8827: 'ISOSpeedRatings',
+      0x8828: 'OECF',
+      0x9201: 'ShutterSpeedValue',
+      0x9202: 'ApertureValue',
+      0x9203: 'BrightnessValue',
+      0x9204: 'ExposureBias',
+      0x9205: 'MaxApertureValue',
+      0x9206: 'SubjectDistance',
+      0x9207: 'MeteringMode',
+      0x9208: 'LightSource',
+      0x9209: 'Flash',
+      0x9214: 'SubjectArea',
+      0x920A: 'FocalLength',
+      0xA20B: 'FlashEnergy',
+      0xA20C: 'SpatialFrequencyResponse',
+      0xA20E: 'FocalPlaneXResolution',
+      0xA20F: 'FocalPlaneYResolution',
+      0xA210: 'FocalPlaneResolutionUnit',
+      0xA214: 'SubjectLocation',
+      0xA215: 'ExposureIndex',
+      0xA217: 'SensingMethod',
+      0xA300: 'FileSource',
+      0xA301: 'SceneType',
+      0xA302: 'CFAPattern',
+      0xA401: 'CustomRendered',
+      0xA402: 'ExposureMode',
+      0xA403: 'WhiteBalance',
+      0xA404: 'DigitalZoomRation',
+      0xA405: 'FocalLengthIn35mmFilm',
+      0xA406: 'SceneCaptureType',
+      0xA407: 'GainControl',
+      0xA408: 'Contrast',
+      0xA409: 'Saturation',
+      0xA40A: 'Sharpness',
+      0xA40B: 'DeviceSettingDescription',
+      0xA40C: 'SubjectDistanceRange',
+      0xA420: 'ImageUniqueID',
+      0x0100: 'ImageWidth',
+      0x0101: 'ImageHeight',
+      0x8769: 'ExifIFDPointer',
+      0x8825: 'GPSInfoIFDPointer',
+      0xA005: 'InteroperabilityIFDPointer',
+      0x0102: 'BitsPerSample',
+      0x0103: 'Compression',
+      0x0106: 'PhotometricInterpretation',
+      0x0112: 'Orientation',
+      0x0115: 'SamplesPerPixel',
+      0x011C: 'PlanarConfiguration',
+      0x0212: 'YCbCrSubSampling',
+      0x0213: 'YCbCrPositioning',
+      0x011A: 'XResolution',
+      0x011B: 'YResolution',
+      0x0128: 'ResolutionUnit',
+      0x0111: 'StripOffsets',
+      0x0116: 'RowsPerStrip',
+      0x0117: 'StripByteCounts',
+      0x0201: 'JPEGInterchangeFormat',
+      0x0202: 'JPEGInterchangeFormatLength',
+      0x012D: 'TransferFunction',
+      0x013E: 'WhitePoint',
+      0x013F: 'PrimaryChromaticities',
+      0x0211: 'YCbCrCoefficients',
+      0x0214: 'ReferenceBlackWhite',
+      0x0132: 'DateTime',
+      0x010E: 'ImageDescription',
+      0x010F: 'Make',
+      0x0110: 'Model',
+      0x0131: 'Software',
+      0x013B: 'Artist',
+      0x8298: 'Copyrigh'
+    },
+
+    StringValues: {
+      ExposureProgram: {
+        0: 'Not defined',
+        1: 'Manual',
+        2: 'Normal program',
+        3: 'Aperture priority',
+        4: 'Shutter priority',
+        5: 'Creative program',
+        6: 'Action program',
+        7: 'Portrait mode',
+        8: 'Landscape mode'
+      },
+      MeteringMode: {
+        0: 'Unknown',
+        1: 'Average',
+        2: 'CenterWeightedAverage',
+        3: 'Spot',
+        4: 'MultiSpot',
+        5: 'Pattern',
+        6: 'Partial',
+        255: 'Other'
+      },
+      LightSource: {
+        0: 'Unknown',
+        1: 'Daylight',
+        2: 'Fluorescent',
+        3: 'Tungsten (incandescent light)',
+        4: 'Flash',
+        9: 'Fine weather',
+        10: 'Cloudy weather',
+        11: 'Shade',
+        12: 'Daylight fluorescent (D 5700 - 7100K)',
+        13: 'Day white fluorescent (N 4600 - 5400K)',
+        14: 'Cool white fluorescent (W 3900 - 4500K)',
+        15: 'White fluorescent (WW 3200 - 3700K)',
+        17: 'Standard light A',
+        18: 'Standard light B',
+        19: 'Standard light C',
+        20: 'D55',
+        21: 'D65',
+        22: 'D75',
+        23: 'D50',
+        24: 'ISO studio tungsten',
+        255: 'Other'
+      },
+      Flash: {
+        0x0000: 'Flash did not fire',
+        0x0001: 'Flash fired',
+        0x0005: 'Strobe return light not detected',
+        0x0007: 'Strobe return light detected',
+        0x0009: 'Flash fired, compulsory flash mode',
+        0x000D: 'Flash fired, compulsory flash mode, return light not detected',
+        0x000F: 'Flash fired, compulsory flash mode, return light detected',
+        0x0010: 'Flash did not fire, compulsory flash mode',
+        0x0018: 'Flash did not fire, auto mode',
+        0x0019: 'Flash fired, auto mode',
+        0x001D: 'Flash fired, auto mode, return light not detected',
+        0x001F: 'Flash fired, auto mode, return light detected',
+        0x0020: 'No flash function',
+        0x0041: 'Flash fired, red-eye reduction mode',
+        0x0045: 'Flash fired, red-eye reduction mode, return light not detected',
+        0x0047: 'Flash fired, red-eye reduction mode, return light detected',
+        0x0049: 'Flash fired, compulsory flash mode, red-eye reduction mode',
+        0x004D: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected',
+        0x004F: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected',
+        0x0059: 'Flash fired, auto mode, red-eye reduction mode',
+        0x005D: 'Flash fired, auto mode, return light not detected, red-eye reduction mode',
+        0x005F: 'Flash fired, auto mode, return light detected, red-eye reduction mode'
+      },
+      SensingMethod: {
+        1: 'Not defined',
+        2: 'One-chip color area sensor',
+        3: 'Two-chip color area sensor',
+        4: 'Three-chip color area sensor',
+        5: 'Color sequential area sensor',
+        7: 'Trilinear sensor',
+        8: 'Color sequential linear sensor'
+      },
+      SceneCaptureType: {
+        0: 'Standard',
+        1: 'Landscape',
+        2: 'Portrait',
+        3: 'Night scene'
+      },
+      SceneType: {
+        1: 'Directly photographed'
+      },
+      CustomRendered: {
+        0: 'Normal process',
+        1: 'Custom process'
+      },
+      WhiteBalance: {
+        0: 'Auto white balance',
+        1: 'Manual white balance'
+      },
+      GainControl: {
+        0: 'None',
+        1: 'Low gain up',
+        2: 'High gain up',
+        3: 'Low gain down',
+        4: 'High gain down'
+      },
+      Contrast: {
+        0: 'Normal',
+        1: 'Soft',
+        2: 'Hard'
+      },
+      Saturation: {
+        0: 'Normal',
+        1: 'Low saturation',
+        2: 'High saturation'
+      },
+      Sharpness: {
+        0: 'Normal',
+        1: 'Soft',
+        2: 'Hard'
+      },
+      SubjectDistanceRange: {
+        0: 'Unknown',
+        1: 'Macro',
+        2: 'Close view',
+        3: 'Distant view'
+      },
+      FileSource: {
+        3: 'DSC'
+      },
+      Components: {
+        0: '',
+        1: 'Y',
+        2: 'Cb',
+        3: 'Cr',
+        4: 'R',
+        5: 'G',
+        6: 'B'
+      }
+    },
+
+    GPSTags: {
+      0x0000: 'GPSVersionID',
+      0x0001: 'GPSLatitudeRef',
+      0x0002: 'GPSLatitude',
+      0x0003: 'GPSLongitudeRef',
+      0x0004: 'GPSLongitude',
+      0x0005: 'GPSAltitudeRef',
+      0x0006: 'GPSAltitude',
+      0x0007: 'GPSTimeStamp',
+      0x0008: 'GPSSatellites',
+      0x0009: 'GPSStatus',
+      0x000A: 'GPSMeasureMode',
+      0x000B: 'GPSDOP',
+      0x000C: 'GPSSpeedRef',
+      0x000D: 'GPSSpeed',
+      0x000E: 'GPSTrackRef',
+      0x000F: 'GPSTrack',
+      0x0010: 'GPSImgDirectionRef',
+      0x0011: 'GPSImgDirection',
+      0x0012: 'GPSMapDatum',
+      0x0013: 'GPSDestLatitudeRef',
+      0x0014: 'GPSDestLatitude',
+      0x0015: 'GPSDestLongitudeRef',
+      0x0016: 'GPSDestLongitude',
+      0x0017: 'GPSDestBearingRef',
+      0x0018: 'GPSDestBearing',
+      0x0019: 'GPSDestDistanceRef',
+      0x001A: 'GPSDestDistance',
+      0x001B: 'GPSProcessingMethod',
+      0x001C: 'GPSAreaInformation',
+      0x001D: 'GPSDateStamp',
+      0x001E: 'GPSDifferential'
+    }
+  };
+
+  BinaryImage = function (imageBin) {
+    var dataOffset = 0;
+    this.length = imageBin.length;
+
+    this.getByteAt = function (imageOffset) {
+      return imageBin.charCodeAt(imageOffset + dataOffset) & 0xFF;
+    };
+
+    this.getBytesAt = function (imageOffset, imageLength) {
+      var bytesArray = [];
+
+      for (var i = 0; i < imageLength; i++) {
+        bytesArray[i] = imageBin.charCodeAt((imageOffset + i) + dataOffset) & 0xFF;
+      }
+
+      return bytesArray;
+    };
+
+    this.getShortAt = function (imageOffset, binaryBigEndian) {
+      var imageShort;
+
+      if (binaryBigEndian) {
+        imageShort = (this.getByteAt(imageOffset) << 8) + this.getByteAt(imageOffset + 1);
+      } else {
+        imageShort = (this.getByteAt(imageOffset + 1) << 8) + this.getByteAt(imageOffset);
+      }
+
+      if (imageShort < 0) {
+        imageShort += 65536;
+      }
+
+      return imageShort;
+    };
+
+    this.getLongAt = function (imageOffset, binaryBigEndian) {
+      var imageShort,
+        imageByte1 = this.getByteAt(imageOffset),
+        imageByte2 = this.getByteAt(imageOffset + 1),
+        imageByte3 = this.getByteAt(imageOffset + 2),
+        imageByte4 = this.getByteAt(imageOffset + 3);
+
+      if (binaryBigEndian) {
+        imageShort = (((((imageByte1 << 8) + imageByte2) << 8) + imageByte3) << 8) + imageByte4;
+      } else {
+        imageShort = (((((imageByte4 << 8) + imageByte3) << 8) + imageByte2) << 8) + imageByte1;
+      }
+
+      if (imageShort < 0) {
+        imageShort += 4294967296;
+      }
+
+      return imageShort;
+    };
+
+    this.getSLongAt = function (imageOffset, binaryBigEndian) {
+      var imageUnsignedLong = this.getLongAt(imageOffset, binaryBigEndian);
+
+      if (imageUnsignedLong > 2147483647) {
+        imageUnsignedLong = (imageUnsignedLong - 4294967296);
+      }
+
+      return imageUnsignedLong;
+    };
+
+    this.getStringAt = function (imageOffset, imageLength) {
+      var bytesArray,
+        stringArray = [];
+
+      bytesArray = this.getBytesAt(imageOffset, imageLength);
+
+      for (var j = 0; j < imageLength; j++) {
+        stringArray[j] = String.fromCharCode(bytesArray[j]);
+      }
+
+      return stringArray.join('');
+    };
+  };
+
+
+  return {
+    readData: FileHandle.readData,
+    readBase64: FileHandle.readBase64
+  };
+
+}();
