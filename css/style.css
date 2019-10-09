@@ -1,0 +1,42 @@
+#stamp1 {
+    position: absolute;
+    /* top: 65%; */
+    left:1%;
+    height: 90%;
+    width: 30%;
+    text-align:center;
+}
+
+#stamp1 img{
+    max-height: 100%;
+    margin-left: 20%;
+}
+
+#stamp2 {
+    position: absolute;
+    top:260%;
+    left:50%;
+    height: 90%;
+    width: 30%;
+
+}
+
+#stamp2 img{
+    max-height: 100%;
+     margin-left: 20%;
+}
+
+#stamp3 {
+    position: absolute;
+    top: 165%;
+    left:27%;
+    height: 100%;
+    width: 30%;
+   text-align:center;
+}
+
+#stamp3 img{
+    max-height: 100%;
+  margin-left: 20%;
+}
+
